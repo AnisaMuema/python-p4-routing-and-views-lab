@@ -10,25 +10,29 @@ def index():
 
 @app.route('/print/<string:parameter>')
 def print_string(parameter):
+    print(parameter)
     return f'{parameter}'
-
 
 @app.route('/count/<int:parameter>')
 def count(parameter):
-    return '\n'.join(str(i) for i in range(parameter))
+    return '\n'.join(str(i) for i in range(parameter)) + '\n'
+     
 
-app.route('/math/<int:num1/<operation>/<int: num2>')
+@app.route('/math/<int:num1>/<operation>/<int:num2>')
 def math(num1, operation, num2):
+    num1 = int(num1)
+    num2 = int(num2)
+
     if operation == '+':
-        result = num1+num2
-    elif operation =='-':
-        result = num1-num2
+        result = num1 + num2
+    elif operation == '-':
+        result = num1 - num2
     elif operation == '*':
         result = num1*num2
-    elif operation =='div':
+    elif operation == 'div':
         result = num1/num2
-    elif operation =='%':
-        result = num1%num2
+    elif operation == '%':
+        result = num1 % num2
     else:
         result = "Invalid operation"
 
